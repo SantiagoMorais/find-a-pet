@@ -3,6 +3,7 @@
 ![banner]()
 
 ## Summary
+
 - [Dependencies](#dependencies)
 - [Dev Dependencies](#dev-dependencies)
 - [Objectives](#objectives)
@@ -25,27 +26,178 @@
 
 - [Tsx](https://www.npmjs.com/package/tsx): TypeScript Execute (tsx) is the easiest way to run TypeScript in Node.js, because Node.js was created with JavaScript.
 
-
 ## Objectives
 
 - Application Rules:
-    - [] It should be able to register a pet
-    - [] It should be able to list all able pets to be adopted in a city
-    - [] It should be able to filter pets by its characteristics
-    - [] It should be able to visualize a pet details to the adoption
-    - [] It should be able to register yourself as an ORG (Organization)
-    - [] It should be able to login/be authenticated as an ORG
+
+  - [] It should be able to register a pet
+  - [] It should be able to list all able pets to be adopted in a city
+  - [] It should be able to filter pets by its characteristics
+  - [] It should be able to visualize a pet details to the adoption
+  - [] It should be able to register yourself as an ORG (Organization)
+  - [] It should be able to login/be authenticated as an ORG
 
 - Bussiness Rules:
-    - [] To list the pets, is required to informate the city
-    - [] It's required to an ORG to have an address and a WhatsApp number
-    - [] A pet must be vinculated to an ORG
-    - [] The user that want to adopt will contact the ORG by WhatsApp
-    - [] All the filters, exept the city, are optionals
-    - [] For an ORG to acess the application as an Admin, it must be logged.
-
+  - [] To list the pets, is required to informate the city
+  - [] It's required to an ORG to have an address and a WhatsApp number
+  - [] A pet must be vinculated to an ORG
+  - [] The user that want to adopt will contact the ORG by WhatsApp
+  - [] All the filters, exept the city, are optionals
+  - [] For an ORG to acess the application as an Admin, it must be logged.
 
 ## Routes
+
+### Organization
+
+- Register a new ORG: `/organization`
+
+  - Method: `POST`
+  - Body:
+    - Organization Name: string
+    - Owner: string
+    - Email: string
+    - Address: string
+    - CEP: number
+    - WhatsApp: number (11 characteres)
+    - Password: string (Between 6 to 15 characteres)
+    - Confirm Password: string (Between 6 to 15 characteres)
+  - Status Code: `201`
+
+---
+
+- Login/Authentication: `/login`
+
+  - Method: `POST`
+  - Body:
+    - Email: string,
+    - Password: string (Between 6 to 15 characteres)
+  - Status Code: `200`
+  - Data Returned:
+
+```typescript
+interface IAuthentication {
+  token: string;
+}
+```
+
+---
+
+- Refresh Token: `/token/refresh`
+
+  - Method: `GET`
+  - Status Code: `200`
+
+---
+
+- Organization Profile: `/organization/profile`
+
+  - **Safe route:** Authentication required
+  - Method: `GET`
+  - Status Code: `200`
+  - Data Returned:
+
+```typescript
+interface IOrganizationProfile {
+  id: string;
+  created_at: string;
+  email: string;
+  cep: string;
+  owner: string;
+  organizationName: string;
+  address: string;
+  whatsApp: number;
+}
+```
+
+---
+
+- Organization Summary: `/organization/summary`
+
+  - Method: `GET`
+  - Status Code: `200`
+  - Data Returned:
+
+```typescript
+interface IOrganizationProfile {
+  id: string;
+  organizationName: string;
+  address: string;
+  whatsApp: number;
+  cep: string;
+}
+```
+
+---
+
+### Pet
+
+- Register a new pet: `/pet`
+
+  - **Safe route:** Authentication required
+  - Method: `POST`
+  - Body:
+    - Name: string
+    - Description: string (optional)
+    - Specie: Cat | Dog | Bird | Other
+    - Age: Puppy | Adult | Elderly
+    - Size: Small | Medium | Large
+    - Energy Level: number (betwen 1 and 5)
+    - Independency Level: number (between 1 and 3)
+    - Space Requirements: number (between 1 and 3)
+    - Photos: string []
+    - Adoption Requirements: string []
+    - Organization Id: string
+  - Status Code: `201`
+
+---
+
+- Pet Profile: `/pet/:petId/profile`
+  - Method: `GET`
+  - Status Code: `200`
+  - Data Returned:
+
+```typescript
+interface IPetProfile {
+  id: string;
+  name: string;
+  description?: string;
+  specie: "Cat" | "Dog" | "Bird" | "Other";
+  age: "Puppy" | "Adult" | "Elderly";
+  size: "Small" | "Medium" | "Large";
+  energyLevel: number; // between 1 and 5
+  independencyLevel: number; // between 1 and 3
+  spaceRequirements: number; // between 1 and 3
+  photos: string[];
+  adoptionRequirements: string[];
+  organizationId: string;
+}
+```
+
+---
+
+- Search Pets by City: `/pet/search`
+
+  - Method: `GET`
+  - Query:
+    - City: string
+    - State: string
+    - Page: (min 1 - 20 pets per page)
+    - Flter?: Age | Specie | Energy Level | Independency Level | Space Requirements
+  - Status Code: `200`
+  - Data Returned:
+
+```typescript
+interface IPets {
+  Pets: {
+    id: string;
+    name: string;
+    specie: "Cat" | "Dog" | "Bird" | "Other";
+    photo: string;
+  }[];
+}
+```
+
+---
 
 ## Project
 
