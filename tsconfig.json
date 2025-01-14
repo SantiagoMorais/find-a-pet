@@ -13,6 +13,11 @@
     "moduleResolution": "node16",
     "declaration": true,
     "emitDeclarationOnly": true,
-    "allowImportingTsExtensions": true
+    "allowImportingTsExtensions": true,
+
+    "rootDir": "./",
+    "paths": {
+      "@/*": ["./src/*"]
+    }
   }
 }
