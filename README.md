@@ -139,7 +139,7 @@ interface IOrganizationProfile {
     - Name: string
     - Description: string (optional)
     - Specie: Cat | Dog | Bird | Other
-    - Age: Puppy | Adult | Elderly
+    - Age: Puppy | Adult | Senior
     - Size: Small | Medium | Large
     - Energy Level: number (betwen 1 and 5)
     - Independency Level: number (between 1 and 3)
