@@ -11,13 +11,12 @@ model Organization {
     id            String   @id @default(cuid())
     name          String
     owner         String
-    email         String
+    email         String   @unique
     address       String
     cep           Decimal
     whatsapp      Decimal
     password_hash String
     created_at    DateTime @default(now())
-    updated_at    DateTime @updatedAt
 
     pets Pet[]
 

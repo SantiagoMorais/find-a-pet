@@ -199,6 +199,13 @@ interface IPets {
 
 ---
 
+- Remove a Pet: `/pet`
+
+  - Method: `DELETE`
+  - Params:
+    - Pet Id: string
+  - Status Code: `204`
+
 ## Project
 
 ## How to execute the project
