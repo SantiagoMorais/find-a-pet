@@ -8,16 +8,16 @@ generator client {
 }
 
 model Organization {
-    id         String   @id @default(cuid())
-    name       String
-    owner      String
-    email      String
-    address    String
-    cep        Decimal
-    whatsapp   Decimal
-    password   String
-    created_at DateTime @default(now())
-    updated_at DateTime @updatedAt
+    id            String   @id @default(cuid())
+    name          String
+    owner         String
+    email         String
+    address       String
+    cep           Decimal
+    whatsapp      Decimal
+    password_hash String
+    created_at    DateTime @default(now())
+    updated_at    DateTime @updatedAt
 
     pets Pet[]
 

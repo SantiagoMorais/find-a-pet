@@ -16,7 +16,7 @@ CREATE TABLE "organizations" (
     "address" TEXT NOT NULL,
     "cep" DECIMAL(65,30) NOT NULL,
     "whatsapp" DECIMAL(65,30) NOT NULL,
-    "password" TEXT NOT NULL,
+    "password_hash" TEXT NOT NULL,
     "created_at" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
     "updated_at" TIMESTAMP(3) NOT NULL,
 
