@@ -34,7 +34,7 @@
   - [] It should be able to list all able pets to be adopted in a city
   - [] It should be able to filter pets by its characteristics
   - [] It should be able to visualize a pet details to the adoption
-  - [] It should be able to register yourself as an ORG (Organization)
+  - [x] It should be able to register yourself as an ORG (Organization)
   - [] It should be able to login/be authenticated as an ORG
 
 - Bussiness Rules:
