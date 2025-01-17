@@ -7,16 +7,6 @@ export class InMemoryOrganizationsRepository
 {
   public organizations: Organization[] = [];
 
-  async findByEmail(email: string) {
-    const organization = this.organizations.find(
-      (organization) => organization.email === email
-    );
-
-    if (!organization) return null;
-
-    return organization;
-  }
-
   async create(data: Prisma.OrganizationCreateInput) {
     const organization = {
       id: randomUUID(),
@@ -31,6 +21,26 @@ export class InMemoryOrganizationsRepository
     };
 
     this.organizations.push(organization);
+
+    return organization;
+  }
+
+  async findByEmail(email: string) {
+    const organization = this.organizations.find(
+      (organization) => organization.email === email
+    );
+
+    if (!organization) return null;
+
+    return organization;
+  }
+
+  async findById(id: string): Promise<Organization | null> {
+    const organization = this.organizations.find(
+      (organization) => organization.id === id
+    );
+
+    if (!organization) return null;
 
     return organization;
   }
