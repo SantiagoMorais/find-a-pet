@@ -35,15 +35,15 @@
   - [] It should be able to filter pets by its characteristics
   - [] It should be able to visualize a pet details to the adoption
   - [x] It should be able to register yourself as an ORG (Organization)
-  - [] It should be able to login/be authenticated as an ORG
+  - [x] It should be able to login/be authenticated as an ORG
 
-- Bussiness Rules:
-  - [] To list the pets, is required to informate the city
-  - [] It's required to an ORG to have an address and a WhatsApp number
-  - [] A pet must be vinculated to an ORG
+- Business Rules:
+  - [] To list the pets, is required to inform the city
+  - [x] It's required to an ORG to have an address and a WhatsApp number
+  - [] A pet must be linked to an ORG
   - [] The user that want to adopt will contact the ORG by WhatsApp
-  - [] All the filters, exept the city, are optionals
-  - [] For an ORG to acess the application as an Admin, it must be logged.
+  - [] All the filters, except the city, are optionals
+  - [] For an ORG to access the application as an Admin, it must be logged.
 
 ## Routes
 
@@ -58,9 +58,9 @@
     - Email: string
     - Address: string
     - CEP: number
-    - WhatsApp: number (11 characteres)
-    - Password: string (Between 6 to 15 characteres)
-    - Confirm Password: string (Between 6 to 15 characteres)
+    - WhatsApp: number (11 characters)
+    - Password: string (Between 6 to 15 characters)
+    - Confirm Password: string (Between 6 to 15 characters)
   - Status Code: `201`
 
 ---
@@ -70,7 +70,7 @@
   - Method: `POST`
   - Body:
     - Email: string,
-    - Password: string (Between 6 to 15 characteres)
+    - Password: string (Between 6 to 15 characters)
   - Status Code: `200`
   - Data Returned:
 
@@ -141,7 +141,7 @@ interface IOrganizationProfile {
     - Specie: Cat | Dog | Bird | Other
     - Age: Puppy | Adult | Senior
     - Size: Small | Medium | Large
-    - Energy Level: number (betwen 1 and 5)
+    - Energy Level: number (between 1 and 5)
     - Independency Level: number (between 1 and 3)
     - Space Requirements: number (between 1 and 3)
     - Photos: string []
@@ -182,7 +182,7 @@ interface IPetProfile {
     - City: string
     - State: string
     - Page: (min 1 - 20 pets per page)
-    - Flter?: Age | Specie | Energy Level | Independency Level | Space Requirements
+    - Filter?: Age | Specie | Energy Level | Independency Level | Space Requirements
   - Status Code: `200`
   - Data Returned:
 
