@@ -2,7 +2,7 @@ import { OrganizationsRepository } from "@/repositories/organizations-repository
 import {
   TRegisterOrganizationUseCase,
   TRegisterOrganizationUseCaseResponse,
-} from "@/core/register-organization-use-case.js";
+} from "@/core/organization/register-organization-use-case.ts";
 import { OrganizationAlreadyExistsError } from "../errors/organization-already-exists-error.ts";
 import { randomUUID } from "crypto";
 import { InvalidCredentialsError } from "../errors/invalid-credentials-error.ts";

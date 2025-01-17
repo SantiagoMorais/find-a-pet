@@ -2,7 +2,7 @@ import { OrganizationsRepository } from "@/repositories/organizations-repository
 import {
   TAuthenticateOrganizationUseCase,
   TIAuthenticateOrganizationUseCaseResponse,
-} from "@/core/authenticate-organization-use-case.js";
+} from "@/core/organization/authenticate-organization-use-case.ts";
 import { InvalidCredentialsError } from "../errors/invalid-credentials-error.ts";
 import { compare } from "bcrypt";
 
