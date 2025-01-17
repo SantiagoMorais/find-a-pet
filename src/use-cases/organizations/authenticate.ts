@@ -2,11 +2,11 @@ import { OrganizationsRepository } from "@/repositories/organizations-repository
 import {
   TAuthenticateOrganizationUseCase,
   TIAuthenticateOrganizationUseCaseResponse,
-} from "@/types/authenticate-organization-use-case.js";
+} from "@/core/authenticate-organization-use-case.js";
 import { InvalidCredentialsError } from "../errors/invalid-credentials-error.ts";
 import { compare } from "bcrypt";
 
-export class Authenticate {
+export class AuthenticateUseCase {
   constructor(private organizationsRepository: OrganizationsRepository) {}
 
   async execute({
