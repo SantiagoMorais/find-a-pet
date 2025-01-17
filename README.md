@@ -30,7 +30,7 @@
 
 - Application Rules:
 
-  - [] It should be able to register a pet
+  - [x] It should be able to register a pet
   - [] It should be able to list all able pets to be adopted in a city
   - [] It should be able to filter pets by its characteristics
   - [] It should be able to visualize a pet details to the adoption
@@ -40,7 +40,7 @@
 - Business Rules:
   - [] To list the pets, is required to inform the city
   - [x] It's required to an ORG to have an address and a WhatsApp number
-  - [] A pet must be linked to an ORG
+  - [x] A pet must be linked to an ORG
   - [] The user that want to adopt will contact the ORG by WhatsApp
   - [] All the filters, except the city, are optionals
   - [] For an ORG to access the application as an Admin, it must be logged.
