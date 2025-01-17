@@ -7,7 +7,7 @@ import { PetsRepository } from "@/repositories/pets-repository.ts";
 import { randomUUID } from "crypto";
 import { ResourceNotFoundError } from "../errors/resource-not-found-error.ts";
 
-export class Register {
+export class RegisterUseCase {
   constructor(
     private petsRepository: PetsRepository,
     private organizationsRepository: OrganizationsRepository

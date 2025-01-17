@@ -9,7 +9,7 @@ export class InMemoryOrganizationsRepository
 
   async create(data: Prisma.OrganizationCreateInput) {
     const organization = {
-      id: randomUUID(),
+      id: data.id ?? randomUUID(),
       name: data.name,
       owner: data.owner,
       email: data.email,
