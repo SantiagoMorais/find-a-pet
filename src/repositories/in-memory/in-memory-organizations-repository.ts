@@ -14,7 +14,7 @@ export class InMemoryOrganizationsRepository
       owner: data.owner,
       email: data.email,
       whatsapp: data.whatsapp as Prisma.Decimal,
-      cep: data.cep as Prisma.Decimal,
+      zip_code: data.zip_code as Prisma.Decimal,
       address: data.address,
       password_hash: data.password_hash,
       created_at: new Date(),
