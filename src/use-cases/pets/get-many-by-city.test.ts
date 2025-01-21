@@ -64,12 +64,28 @@ describe("Get many by city Use Case", () => {
     expect(pets).toHaveLength(0);
   });
 
-  it("should not be able to search pets using the name of any of other params that is not city or state.", async () => {
-    const { pets } = await sut.execute({
+  it("should be able to filter pets", async () => {
+    const firstFilter = await sut.execute({
       state: "MG",
-      city: "Random Neighborhood",
+      city: "Typescript City",
+      filter: { specie: "DOG" },
     });
 
-    expect(pets).toHaveLength(0);
+    const secondFilter = await sut.execute({
+      state: "MG",
+      city: "Typescript City",
+      filter: { independencyLevel: 3, specie: "DOG" },
+    });
+
+    expect(firstFilter).toStrictEqual(
+      expect.objectContaining({
+        pets: expect.arrayContaining([
+          expect.objectContaining({ id: "pet-1" }),
+          expect.objectContaining({ id: "pet-2" }),
+        ]),
+      })
+    );
+
+    expect(secondFilter).toEqual({ pets: [] });
   });
 });
