@@ -44,4 +44,19 @@ export class InMemoryOrganizationsRepository
 
     return organization;
   }
+
+  async findManyByLocation(city: string, state: string) {
+    const organizations = this.organizations.filter((organization) => {
+      const addressLowerCase = organization.address.toLocaleLowerCase();
+      const cityLowerCase = city.toLowerCase();
+      const stateLowerCase = state.toLowerCase();
+
+      return (
+        addressLowerCase.includes(cityLowerCase) &&
+        addressLowerCase.includes(stateLowerCase)
+      );
+    });
+
+    return organizations;
+  }
 }
