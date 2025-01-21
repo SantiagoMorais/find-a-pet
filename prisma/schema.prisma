@@ -13,7 +13,7 @@ model Organization {
     owner         String
     email         String   @unique
     address       String
-    cep           Decimal
+    zip_code      Decimal
     whatsapp      Decimal
     password_hash String
     created_at    DateTime @default(now())
