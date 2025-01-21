@@ -2,8 +2,9 @@ import {
   TRegisterOrganizationUseCase,
   TRegisterOrganizationUseCaseResponse,
 } from "@/core/organization/register-organization-use-case.ts";
+import { TViaCepAPIResponse } from "@/core/via-cep-api-response.js";
 import { OrganizationsRepository } from "@/repositories/organizations-repository.ts";
-import { verifyZipCodeByAddress } from "@/utils/verify-zip-code-by-address.ts";
+import { returnAddressFromZipCode } from "@/utils/return-address-from-zip-code.ts";
 import { hash } from "bcrypt";
 import { randomUUID } from "crypto";
 import { InvalidCredentialsError } from "../errors/invalid-credentials-error.ts";
@@ -14,13 +15,13 @@ export class RegisterUseCase {
 
   async execute({
     email,
-    address,
-    cep,
+    zipCode,
     confirmPassword,
     name,
     owner,
     password,
     whatsApp,
+    addressNumber,
   }: TRegisterOrganizationUseCase): Promise<TRegisterOrganizationUseCaseResponse> {
     const passwordHash = await hash(password, 6);
 
@@ -31,14 +32,14 @@ export class RegisterUseCase {
 
     if (password !== confirmPassword) throw new InvalidCredentialsError();
 
-    const { valid, message } = await verifyZipCodeByAddress({
-      cep,
-      city: address.split(",")[1]?.trim(),
-      state: address.split(",")[2]?.trim(),
-      street: address.split(",")[0]?.trim(),
-    });
-
-    if (!valid) throw new InvalidCredentialsError(message);
+    const orgAddress: TViaCepAPIResponse =
+      await returnAddressFromZipCode(zipCode);
+    const {
+      logradouro: street,
+      bairro: neighborhood,
+      localidade: city,
+      uf: state,
+    } = orgAddress;
 
     const organization = await this.organizationsRepository.create({
       id: randomUUID(),
@@ -46,8 +47,8 @@ export class RegisterUseCase {
       owner,
       email,
       whatsapp: whatsApp,
-      cep,
-      address,
+      zip_code: zipCode,
+      address: `${street}, ${addressNumber}, ${neighborhood}, ${city} - ${state}`,
       password_hash: passwordHash,
     });
 
