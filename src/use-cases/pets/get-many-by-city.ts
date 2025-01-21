@@ -14,7 +14,7 @@ export class GetManyByCity {
   async execute({
     state,
     city,
-  }: TGetManyByCityRequest): Promise<TGetManyByCityResponse | null> {
+  }: TGetManyByCityRequest): Promise<TGetManyByCityResponse> {
     const organizations = await this.organizationsRepository.findManyByLocation(
       state,
       city
