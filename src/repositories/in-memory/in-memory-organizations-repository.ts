@@ -45,7 +45,7 @@ export class InMemoryOrganizationsRepository
     return organization;
   }
 
-  async findManyByLocation(city: string, state: string) {
+  async findManyByLocation(state: string, city: string) {
     const organizations = this.organizations.filter((organization) => {
       const addressLowerCase = organization.address.toLocaleLowerCase();
       const cityLowerCase = city.toLowerCase();

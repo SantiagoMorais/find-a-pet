@@ -36,4 +36,12 @@ export class InMemoryPetsRepository implements PetsRepository {
 
     return pet;
   }
+
+  async findManyByOrganizationIds(organizationId: string[]) {
+    const pets = this.pets.filter((pet) =>
+      organizationId.includes(pet.organization_id)
+    );
+
+    return { pets };
+  }
 }
