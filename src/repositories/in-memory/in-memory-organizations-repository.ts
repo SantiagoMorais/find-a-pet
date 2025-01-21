@@ -48,12 +48,18 @@ export class InMemoryOrganizationsRepository
   async findManyByLocation(state: string, city: string) {
     const organizations = this.organizations.filter((organization) => {
       const addressLowerCase = organization.address.toLocaleLowerCase();
+
+      const addressParts = addressLowerCase.split(",");
+      const cityAndState = addressParts[addressParts.length - 1]?.trim();
+      const [cityFromAddress, stateFromAddress] = cityAndState
+        .split("-")
+        .map((part) => part.trim());
+
       const cityLowerCase = city.toLowerCase();
       const stateLowerCase = state.toLowerCase();
 
       return (
-        addressLowerCase.includes(cityLowerCase) &&
-        addressLowerCase.includes(stateLowerCase)
+        cityFromAddress === cityLowerCase && stateFromAddress === stateLowerCase
       );
     });
 

@@ -29,8 +29,7 @@ export class PrismaOrganizationsRepository implements OrganizationsRepository {
     const organizations = await prisma.organization.findMany({
       where: {
         AND: [
-          { address: { contains: city, mode: "insensitive" } },
-          { address: { contains: state, mode: "insensitive" } },
+          { address: { contains: `${city} - ${state}`, mode: "insensitive" } },
         ],
       },
     });
