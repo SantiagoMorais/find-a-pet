@@ -2,6 +2,8 @@ import { Prisma, Pet } from "@prisma/client";
 import { PetsRepository } from "../pets-repository.ts";
 import { randomUUID } from "crypto";
 import { ResourceNotFoundError } from "@/use-cases/errors/resource-not-found-error.ts";
+import { TPetsFilterRequest } from "@/core/pet/get-many-by-city-use-case.ts";
+import { filterPetsMappings } from "@/utils/filter-pets-mapping.ts";
 
 export class InMemoryPetsRepository implements PetsRepository {
   public pets: Pet[] = [];
@@ -37,10 +39,24 @@ export class InMemoryPetsRepository implements PetsRepository {
     return pet;
   }
 
-  async findManyByOrganizationIds(organizationId: string[]) {
-    const pets = this.pets.filter((pet) =>
-      organizationId.includes(pet.organization_id)
-    );
+  async findManyByOrganizationIds(
+    organizationId: string[],
+    filter?: TPetsFilterRequest
+  ) {
+    const pets = this.pets.filter((pet) => {
+      const belongsToOrganization = organizationId.includes(
+        pet.organization_id
+      );
+
+      const matchesFilters = Object.entries(filter || {}).every(
+        ([key, value]) => {
+          const getPetValue = filterPetsMappings[key];
+          return getPetValue ? getPetValue(pet) === value : true;
+        }
+      );
+
+      return belongsToOrganization && matchesFilters;
+    });
 
     return { pets };
   }

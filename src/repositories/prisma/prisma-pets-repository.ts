@@ -1,6 +1,8 @@
+import { TPetsFilterRequest } from "@/core/pet/get-many-by-city-use-case.ts";
 import { prisma } from "@/database/index.ts";
 import { ResourceNotFoundError } from "@/use-cases/errors/resource-not-found-error.ts";
-import { Pet, Prisma } from "@prisma/client";
+import { prismaFilterPetsMappings } from "@/utils/filter-pets-mapping.ts";
+import { Prisma } from "@prisma/client";
 import { PetsRepository } from "../pets-repository.ts";
 
 export class PrismaPetsRepository implements PetsRepository {
@@ -20,12 +22,31 @@ export class PrismaPetsRepository implements PetsRepository {
     return pet;
   }
 
-  async findManyByOrganizationIds(organizationId: string[]) {
+  async findManyByOrganizationIds(
+    organizationId: string[],
+    filter?: TPetsFilterRequest
+  ) {
+    const dynamicFilters = Object.entries(filter || {}).reduce(
+      (acc, [key, value]) => {
+        const mappedField = prismaFilterPetsMappings[key];
+        if (mappedField) {
+          acc[mappedField] = value;
+        }
+        return acc;
+      },
+      {} as Record<string, any>
+    );
+
     const pets = await prisma.pet.findMany({
       where: {
-        organization_id: {
-          in: organizationId,
-        },
+        AND: [
+          {
+            organization_id: {
+              in: organizationId,
+            },
+          },
+          dynamicFilters,
+        ],
       },
     });
 
