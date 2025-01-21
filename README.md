@@ -31,18 +31,18 @@
 - Application Rules:
 
   - [x] It should be able to register a pet
-  - [] It should be able to list all able pets to be adopted in a city
-  - [] It should be able to filter pets by its characteristics
+  - [x] It should be able to list all able pets to be adopted in a city
+  - [x] It should be able to filter pets by its characteristics
   - [x] It should be able to visualize a pet details to the adoption
   - [x] It should be able to register yourself as an ORG (Organization)
   - [x] It should be able to login/be authenticated as an ORG
 
 - Business Rules:
-  - [] To list the pets, is required to inform the city
+  - [x] To list the pets, is required to inform the city
   - [x] It's required to an ORG to have an address and a WhatsApp number
   - [x] A pet must be linked to an ORG
-  - [] The user that want to adopt will contact the ORG by WhatsApp
-  - [] All the filters, except the city, are optionals
+  - [x] The user that want to adopt will contact the ORG by WhatsApp
+  - [x] All the filters, except the city, are optionals
   - [] For an ORG to access the application as an Admin, it must be logged.
 
 ## Routes
