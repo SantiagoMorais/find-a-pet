@@ -21,7 +21,7 @@ describe("Authenticate Organization Use Case", () => {
       owner: "John Doe",
       email: "johndoe@test.com",
       address: "123 Main Street, Petville",
-      cep: 12345678,
+      zip_code: 12345678,
       whatsapp: 11999999999,
       password_hash: await hash("123456", 6),
     });
@@ -41,7 +41,7 @@ describe("Authenticate Organization Use Case", () => {
       owner: "John Doe",
       email: "johndoe@test.com",
       address: "123 Main Street, Petville",
-      cep: 12345678,
+      zip_code: 12345678,
       whatsapp: 11999999999,
       password_hash: await hash("123456", 6),
     });
@@ -62,7 +62,7 @@ describe("Authenticate Organization Use Case", () => {
       owner: "John Doe",
       email: "johndoe@test.com",
       address: "123 Main Street, Petville",
-      cep: 12345678,
+      zip_code: 12345678,
       whatsapp: 11999999999,
       password_hash: await hash("123456", 6),
     });
