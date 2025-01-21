@@ -14,6 +14,7 @@ export class GetManyByCity {
   async execute({
     state,
     city,
+    filter,
   }: TGetManyByCityRequest): Promise<TGetManyByCityResponse> {
     const organizations = await this.organizationsRepository.findManyByLocation(
       state,
@@ -22,9 +23,10 @@ export class GetManyByCity {
 
     if (!organizations || organizations.length === 0) return { pets: [] };
 
-    const pets = await this.petsRepository.findManyByOrganizationIds(
-      organizations.map((org) => org.id)
-    );
+    const organizationIds = organizations.map((org) => org.id);
+
+    const pets =
+      await this.petsRepository.findManyByOrganizationIds(organizationIds, filter);
 
     return pets;
   }
