@@ -7,8 +7,10 @@ export const registerOrganizationSchema = z
     name: z.string(),
     owner: z.string(),
     email: z.string().email(),
-    address: z.string(),
-    cep: z.string().regex(/^\d{5}-?\d{3}$/, "Invalid CEP"),
+    zipCode: z
+      .string()
+      .regex(/^\d{8}$/, "Zip code must contain only 8 numeric characters"),
+    addressNumber: z.coerce.number(),
     whatsApp: z.number().positive().int(),
     password: z
       .string()
