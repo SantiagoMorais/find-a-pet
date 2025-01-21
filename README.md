@@ -33,7 +33,7 @@
   - [x] It should be able to register a pet
   - [] It should be able to list all able pets to be adopted in a city
   - [] It should be able to filter pets by its characteristics
-  - [] It should be able to visualize a pet details to the adoption
+  - [x] It should be able to visualize a pet details to the adoption
   - [x] It should be able to register yourself as an ORG (Organization)
   - [x] It should be able to login/be authenticated as an ORG
 
@@ -205,6 +205,18 @@ interface IPets {
   - Params:
     - Pet Id: string
   - Status Code: `204`
+
+---
+
+- Chance pet detail: `/pet`
+
+  - **Safe route:** Authentication required
+  - Method: `Patch`
+  - Bearer token:
+    - Organization Id
+  - Status Code: 200
+  - Body:
+    
 
 ## Project
 
