@@ -20,5 +20,5 @@ app.setErrorHandler((error, _, res) => {
 
   if (env.NODE_ENV !== "production") console.log(error);
 
-  return res.status(500).send({message: "❌💻 Internal server error."})
+  return res.status(500).send({ message: "❌💻 Internal server error - Global Error" });
 });

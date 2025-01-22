@@ -3,7 +3,6 @@ import { z } from "zod";
 
 export const registerOrganizationSchema = z
   .object({
-    id: z.string(),
     name: z.string(),
     owner: z.string(),
     email: z.string().email(),
