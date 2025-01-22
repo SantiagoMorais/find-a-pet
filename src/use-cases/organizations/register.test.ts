@@ -17,7 +17,6 @@ describe("Register Organization Use Case", () => {
 
   it("should be able to register an organization", async () => {
     const { organization } = await sut.execute({
-      id: randomUUID(),
       name: "Happy Paws Shelter",
       owner: "John Doe",
       email: "johndoe@test.com",
@@ -33,7 +32,6 @@ describe("Register Organization Use Case", () => {
 
   it("should be the password be correctly hashed upon registration", async () => {
     const { organization } = await sut.execute({
-      id: randomUUID(),
       name: "Happy Paws Shelter",
       owner: "John Doe",
       email: "johndoe@test.com",
@@ -60,7 +58,6 @@ describe("Register Organization Use Case", () => {
 
   it("should not to be able to register with the same email twice", async () => {
     await sut.execute({
-      id: randomUUID(),
       name: "Happy Paws Shelter",
       owner: "John Doe",
       email: "johndoe@test.com",
@@ -71,10 +68,9 @@ describe("Register Organization Use Case", () => {
       confirmPassword: "123456",
     });
 
-    expect(
+    await expect(
       async () =>
         await sut.execute({
-          id: randomUUID(),
           name: "Organization with same email",
           owner: "Jane Doe",
           email: "johndoe@test.com",
@@ -87,11 +83,10 @@ describe("Register Organization Use Case", () => {
     ).rejects.toBeInstanceOf(OrganizationAlreadyExistsError);
   });
 
-  it("should not be able to register with a wrong password confirmation", () => {
-    expect(
+  it("should not be able to register with a wrong password confirmation", async () => {
+    await expect(
       async () =>
         await sut.execute({
-          id: randomUUID(),
           name: "Happy Paws Shelter",
           owner: "John Doe",
           email: "johndoe@test.com",

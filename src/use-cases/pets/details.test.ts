@@ -30,8 +30,6 @@ describe("Pet Details Use Case", () => {
       organization_id: "organization-id",
     });
 
-    console.log(petCreated);
-
     const { pet } = await sut.execute("pet-id");
 
     expect(pet?.id).toEqual(expect.any(String));

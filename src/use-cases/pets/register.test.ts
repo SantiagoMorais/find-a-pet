@@ -49,7 +49,7 @@ describe("Register Pet Use Case", () => {
   });
 
   it("should no be able to register a pet without an registered ORG", async () => {
-    expect(
+    await expect(
       async () =>
         await sut.execute({
           id: "pet-id",
