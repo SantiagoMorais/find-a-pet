@@ -28,6 +28,12 @@
 
 - [Tsx](https://www.npmjs.com/package/tsx): TypeScript Execute (tsx) is the easiest way to run TypeScript in Node.js, because Node.js was created with JavaScript.
 
+- [Vitest](https://vitest.dev/): A fast testing framework, specially for Vite projects, offering Jest-like functionality with built-in TypeScript support, optimized for speed and modern development.
+
+- [npm-run-all](https://www.npmjs.com/package/npm-run-all): The official npm run-script command cannot run multiple scripts, so if we want to run multiple scripts, it's redundant a bit. The npm-run all short it by glob-like patterns.
+
+- [supertest](https://www.npmjs.com/package/supertest): It provides a high-level abstraction for testing HTTP while also allowing you to access the lower-level API provided by the superagent. In other words, testing the server without having to run it on a specific port, avoiding conflicts.
+
 ## Objectives
 
 - Application Rules:
