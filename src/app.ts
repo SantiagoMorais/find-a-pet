@@ -6,11 +6,14 @@ import {
   ZodTypeProvider,
 } from "fastify-type-provider-zod";
 import { env } from "./env/index.ts";
+import { organizationsRoutes } from "./http/controllers/organizations/routes.ts";
 
 export const app = fastify().withTypeProvider<ZodTypeProvider>();
 
 app.setValidatorCompiler(validatorCompiler);
 app.setSerializerCompiler(serializerCompiler);
+
+app.register(organizationsRoutes);
 
 app.setErrorHandler((error, _, res) => {
   if (hasZodFastifySchemaValidationErrors(error))
@@ -20,5 +23,7 @@ app.setErrorHandler((error, _, res) => {
 
   if (env.NODE_ENV !== "production") console.log(error);
 
-  return res.status(500).send({ message: "❌💻 Internal server error - Global Error" });
+  return res
+    .status(500)
+    .send({ message: "❌💻 Internal server error - Global Error" });
 });
