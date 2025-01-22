@@ -216,7 +216,6 @@ interface IPets {
     - Organization Id
   - Status Code: 200
   - Body:
-    
 
 ## Project
 

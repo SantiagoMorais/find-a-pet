@@ -42,7 +42,7 @@ describe("Register Organization Use Case", () => {
       whatsApp: 5511999999999,
       password: "123456",
       confirmPassword: "123456",
-    });    
+    });
 
     const isPasswordCorrectlyHashed = await compare(
       "123456",

@@ -25,8 +25,10 @@ export class GetManyByCity {
 
     const organizationIds = organizations.map((org) => org.id);
 
-    const pets =
-      await this.petsRepository.findManyByOrganizationIds(organizationIds, filter);
+    const pets = await this.petsRepository.findManyByOrganizationIds(
+      organizationIds,
+      filter
+    );
 
     return pets;
   }
