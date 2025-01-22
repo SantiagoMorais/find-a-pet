@@ -16,6 +16,8 @@
 
 - [Fastify](https://fastify.dev/): Fast and low overhead web framework, for Node.js.
 
+- [fastify-type-provider-zod](https://github.com/turkerdev/fastify-type-provider-zod): Is designed to integrate Zod as a type provider in Fastify, enabling schema validation and type inference for requests and responses.
+
 ## Dev Dependencies
 
 - [ESLint](https://eslint.org/): Code analysis tool responsible for identifying errors and inconsistencies.
