@@ -1,7 +1,7 @@
 import { OrganizationsRepository } from "@/repositories/organizations-repository.ts";
 import { ResourceNotFoundError } from "../errors/resource-not-found-error.ts";
 
-export class OrganizationProfile {
+export class OrganizationProfileUseCase {
   constructor(private organizationsRepository: OrganizationsRepository) {}
 
   async execute(organizationId: string) {
