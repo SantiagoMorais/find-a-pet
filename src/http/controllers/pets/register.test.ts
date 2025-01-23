@@ -14,10 +14,7 @@ describe("Register Pet E2E", () => {
 
   it("should be possible to register a new pet into an ORG", async () => {
     const { token } = await createAndAuthenticateOrganization(app);
-
-    console.log(token);
     
-
     const petsResponse = await request(app.server)
       .post("/pet")
       .set("Authorization", `Bearer ${token}`)
