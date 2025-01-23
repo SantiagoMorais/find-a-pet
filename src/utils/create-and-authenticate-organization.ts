@@ -1,4 +1,5 @@
 import { prisma } from "@/database/index.ts";
+import { hash } from "bcrypt";
 import { FastifyInstance } from "fastify";
 import request from "supertest";
 
@@ -13,7 +14,7 @@ export const createAndAuthenticateOrganization = async (
       zip_code: "31365450",
       address: "any",
       whatsapp: 5511999999999,
-      password_hash: "123456",
+      password_hash: await hash("123456", 6),
     },
   });
 

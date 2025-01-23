@@ -25,7 +25,7 @@ describe("Organization Profile Use Case", () => {
       password_hash: await hash("123456", 6),
     });
 
-    const profile = await sut.execute(id);
+    const profile = await sut.execute({ organizationId: id });
 
     expect(profile).toEqual({
       organization: {
