@@ -2,8 +2,6 @@ import { InMemoryOrganizationsRepository } from "@/repositories/in-memory/in-mem
 import { hash } from "bcrypt";
 import { randomUUID } from "crypto";
 import { beforeEach, describe, expect, it } from "vitest";
-import { AuthenticateUseCase } from "./authenticate.ts";
-import { InvalidCredentialsError } from "../errors/invalid-credentials-error.ts";
 import { OrganizationProfileUseCase } from "./profile.ts";
 
 let organizationsRepository: InMemoryOrganizationsRepository;
