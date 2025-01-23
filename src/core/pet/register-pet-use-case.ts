@@ -1,8 +1,8 @@
 import { Pet, Prisma } from "@prisma/client";
 import { z } from "zod";
 
-const registerPetSchema = z.object({
-  id: z.string().uuid(),
+export const registerPetSchema = z.object({
+  id: z.string().uuid().optional(),
   name: z.string().refine((value) => value.length >= 1 && value.length <= 50, {
     message: "Name must be between 1 and 50 characters",
   }),
