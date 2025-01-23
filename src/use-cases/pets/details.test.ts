@@ -12,7 +12,7 @@ describe("Pet Details Use Case", () => {
   });
 
   it("should be able to get pet details by id", async () => {
-    const petCreated = await petsRepository.create({
+    await petsRepository.create({
       id: "pet-id",
       name: "Buddy",
       description: "A friendly and energetic dog.",

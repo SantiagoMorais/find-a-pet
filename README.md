@@ -141,7 +141,7 @@ interface IOrganizationProfile {
 
 ---
 
-- Pet Profile: `/pet/:petId/profile`
+- Pet Details: `/pet/:petId`
   - Method: `GET`
   - Status Code: `200`
   - Data Returned:

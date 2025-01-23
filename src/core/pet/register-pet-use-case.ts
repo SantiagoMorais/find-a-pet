@@ -1,4 +1,4 @@
-import { Pet, Prisma } from "@prisma/client";
+import { Pet } from "@prisma/client";
 import { z } from "zod";
 
 export const registerPetSchema = z.object({

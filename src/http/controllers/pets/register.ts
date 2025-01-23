@@ -20,11 +20,13 @@ export const registerPet = async (
     photos,
     adoptionRequirements,
     organizationId,
+    id
   } = req.body;
 
   try {
     const registerPetUseCase = makeRegisterPetUseCase();
     const { pet } = await registerPetUseCase.execute({
+      id,
       name,
       description,
       specie,

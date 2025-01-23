@@ -23,7 +23,7 @@ export class RegisterUseCase {
     if (!organization) throw new ResourceNotFoundError();
 
     const pet = await this.petsRepository.create({
-      id: data.id ?? randomUUID(),
+      id: data.id ? data.id : randomUUID(),
       name: data.name,
       description: data.description,
       age: data.age,
