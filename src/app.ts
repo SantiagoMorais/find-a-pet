@@ -10,6 +10,7 @@ import { organizationsRoutes } from "./http/controllers/organizations/routes.ts"
 import fastifyJwt from "@fastify/jwt";
 import fastifyCookie from "@fastify/cookie";
 import fastifyCors from "@fastify/cors";
+import { petsRoutes } from "./http/controllers/pets/routes.ts";
 
 export const app = fastify().withTypeProvider<ZodTypeProvider>();
 
@@ -38,6 +39,7 @@ app.register(fastifyCors, {
 
 // Routes
 app.register(organizationsRoutes);
+app.register(petsRoutes);
 
 // Global Error Handler
 app.setErrorHandler((error, _, res) => {

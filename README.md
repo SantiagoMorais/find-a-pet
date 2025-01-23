@@ -119,24 +119,6 @@ interface IOrganizationProfile {
 
 ---
 
-- Organization Summary: `/organization/summary`
-
-  - Method: `GET`
-  - Status Code: `200`
-  - Data Returned:
-
-```typescript
-interface IOrganizationProfile {
-  id: string;
-  organizationName: string;
-  address: string;
-  whatsApp: number;
-  cep: string;
-}
-```
-
----
-
 ### Pet
 
 - Register a new pet: `/pet`
