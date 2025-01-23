@@ -8,4 +8,5 @@ export interface OrganizationsRepository {
     state: string,
     city: string
   ): Promise<Organization[] | null>;
+  update(id: string, data: Prisma.OrganizationUpdateInput): Promise<Organization>;
 }

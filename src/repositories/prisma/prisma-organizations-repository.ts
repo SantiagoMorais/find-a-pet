@@ -34,4 +34,10 @@ export class PrismaOrganizationsRepository implements OrganizationsRepository {
 
     return organizations;
   }
+
+  async update(id: string, data: Prisma.OrganizationUpdateInput) {
+    const organization = await prisma.organization.update({ where: { id }, data });
+
+    return organization;
+  }
 }
