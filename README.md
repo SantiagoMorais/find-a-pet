@@ -92,7 +92,7 @@ interface IAuthentication {
 
 - Refresh Token: `/token/refresh`
 
-  - Method: `GET`
+  - Method: `PATCH`
   - Status Code: `200`
 
 ---
