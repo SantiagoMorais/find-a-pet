@@ -1,10 +1,9 @@
 import { InMemoryOrganizationsRepository } from "@/repositories/in-memory/in-memory-organizations-repository.ts";
-import { beforeEach, describe, expect, it } from "vitest";
-import { RegisterUseCase } from "./register.ts";
-import { randomUUID } from "crypto";
 import { compare } from "bcrypt";
-import { OrganizationAlreadyExistsError } from "../errors/organization-already-exists-error.ts";
+import { beforeEach, describe, expect, it } from "vitest";
 import { InvalidCredentialsError } from "../errors/invalid-credentials-error.ts";
+import { OrganizationAlreadyExistsError } from "../errors/organization-already-exists-error.ts";
+import { RegisterUseCase } from "./register.ts";
 
 let organizationsRepository: InMemoryOrganizationsRepository;
 let sut: RegisterUseCase;

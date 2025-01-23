@@ -1,5 +1,5 @@
 import { prisma } from "@/database/index.ts";
-import { Organization, Prisma } from "@prisma/client";
+import { Prisma } from "@prisma/client";
 import { OrganizationsRepository } from "../organizations-repository.ts";
 
 export class PrismaOrganizationsRepository implements OrganizationsRepository {
@@ -33,11 +33,5 @@ export class PrismaOrganizationsRepository implements OrganizationsRepository {
     });
 
     return organizations;
-  }
-
-  async update(id: string, data: Prisma.OrganizationUpdateInput) {
-    const organization = await prisma.organization.update({ where: { id }, data });
-
-    return organization;
   }
 }
