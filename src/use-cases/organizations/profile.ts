@@ -4,7 +4,7 @@ import { ResourceNotFoundError } from "../errors/resource-not-found-error.ts";
 export class OrganizationProfileUseCase {
   constructor(private organizationsRepository: OrganizationsRepository) {}
 
-  async execute(organizationId: string) {
+  async execute({ organizationId }: { organizationId: string }) {
     const organization =
       await this.organizationsRepository.findById(organizationId);
 
