@@ -37,10 +37,6 @@ export const register = async (
       return res.status(409).send({ message: error.message });
     if (error instanceof InvalidCredentialsError)
       return res.status(401).send({ message: error.message });
-
-    return res
-      .status(500)
-      .send({ message: "❌💻 Internal server error - Route Error." });
   }
 
   return res.status(201).send();
