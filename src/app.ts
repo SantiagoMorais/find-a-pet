@@ -7,14 +7,39 @@ import {
 } from "fastify-type-provider-zod";
 import { env } from "./env/index.ts";
 import { organizationsRoutes } from "./http/controllers/organizations/routes.ts";
+import fastifyJwt from "@fastify/jwt";
+import fastifyCookie from "@fastify/cookie";
+import fastifyCors from "@fastify/cors";
 
 export const app = fastify().withTypeProvider<ZodTypeProvider>();
 
+// Fastify Type Provider Zod Configuration
 app.setValidatorCompiler(validatorCompiler);
 app.setSerializerCompiler(serializerCompiler);
 
+// Json Web Token
+app.register(fastifyJwt, {
+  secret: env.JWT_SECRET,
+  sign: { expiresIn: "10m" },
+  cookie: {
+    cookieName: "refreshToken",
+    signed: false,
+  },
+});
+
+// Cookie
+app.register(fastifyCookie);
+
+// Cors
+app.register(fastifyCors, {
+  origin: "*",
+  credentials: true,
+});
+
+// Routes
 app.register(organizationsRoutes);
 
+// Global Error Handler
 app.setErrorHandler((error, _, res) => {
   if (hasZodFastifySchemaValidationErrors(error))
     return res

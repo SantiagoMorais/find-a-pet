@@ -40,6 +40,9 @@
     "vitest": "2.1.8"
   },
   "dependencies": {
+    "@fastify/cookie": "11.0.2",
+    "@fastify/cors": "10.0.2",
+    "@fastify/jwt": "9.0.3",
     "@prisma/client": "6.2.1",
     "@types/bcrypt": "5.0.2",
     "axios": "1.7.9",
