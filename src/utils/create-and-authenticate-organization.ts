@@ -15,6 +15,7 @@ export const createAndAuthenticateOrganization = async (
       address: "any",
       whatsapp: 5511999999999,
       password_hash: await hash("123456", 6),
+      id: "organization-id",
     },
   });
 

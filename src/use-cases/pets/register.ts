@@ -34,7 +34,7 @@ export class RegisterUseCase {
       specie: data.specie,
       adoption_requirements: data.adoptionRequirements,
       photos: data.photos,
-      organization_id: data.organizationId,
+      organization_id: organization.id,
     });
 
     return { pet };

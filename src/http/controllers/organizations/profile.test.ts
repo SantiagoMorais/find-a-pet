@@ -12,7 +12,7 @@ describe("Organization Profile E2E", () => {
     await app.close();
   });
 
-  it("should be possible get a logged organization profile", async () => {
+  it("should be possible to get a logged organization profile", async () => {
     const { token } = await createAndAuthenticateOrganization(app);
 
     const response = await request(app.server)
