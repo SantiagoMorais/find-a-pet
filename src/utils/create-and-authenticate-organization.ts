@@ -12,7 +12,7 @@ export const createAndAuthenticateOrganization = async (
       owner: "John Doe",
       email: "johndoe@test.com",
       zip_code: "31365450",
-      address: "any",
+      address: "Node street, 123, Garden Neighborhood, Typescript City - MG",
       whatsapp: 5511999999999,
       password_hash: await hash("123456", 6),
       id: "organization-id",
