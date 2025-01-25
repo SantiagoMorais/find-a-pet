@@ -165,20 +165,20 @@ interface IPetProfile {
 
 ---
 
-- Search Pets by City: `/pet/search`
+- Search Pets by City: `/pet/:organizationId`
 
   - Method: `GET`
   - Query:
     - City: string
     - State: string
-    - Page: (min 1 - 20 pets per page)
+    - Page: (max 20 pets per page)
     - Filter?: Age | Specie | Energy Level | Independency Level | Space Requirements
   - Status Code: `200`
   - Data Returned:
 
 ```typescript
 interface IPets {
-  Pets: {
+  pets: {
     id: string;
     name: string;
     specie: "Cat" | "Dog" | "Bird" | "Other";
@@ -197,15 +197,6 @@ interface IPets {
   - Status Code: `204`
 
 ---
-
-- Chance pet detail: `/pet`
-
-  - **Safe route:** Authentication required
-  - Method: `Patch`
-  - Bearer token:
-    - Organization Id
-  - Status Code: 200
-  - Body:
 
 ## Project
 

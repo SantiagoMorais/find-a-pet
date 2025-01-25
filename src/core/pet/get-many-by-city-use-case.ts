@@ -14,6 +14,7 @@ const getManyByCitySchema = z.object({
   city: z.string(),
   state: z.string(),
   filter: petsFilterSchema.optional(),
+  page: z.number().optional().default(1),
 });
 
 export type TPetsFilterRequest = z.infer<typeof petsFilterSchema>;
