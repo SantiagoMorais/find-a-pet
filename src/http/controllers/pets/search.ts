@@ -2,7 +2,7 @@ import { TSearchPetsFilterQuery } from "@/core/pet/search-pets-filter-query.ts";
 import { makeSearchPetsUseCase } from "@/use-cases/factories/pet/make-search-pets-use-case.ts";
 import { FastifyReply, FastifyRequest } from "fastify";
 
-export const SearchPets = async (
+export const searchPets = async (
   req: FastifyRequest<{
     Querystring: {
       city: string;
@@ -17,7 +17,7 @@ export const SearchPets = async (
 
   try {
     const useCase = makeSearchPetsUseCase();
-    await useCase.execute({
+    const pets = await useCase.execute({
       city,
       state,
       page,
@@ -30,5 +30,9 @@ export const SearchPets = async (
         specie: filter.specie,
       },
     });
-  } catch (error) {}
+
+    return res.status(200).send(pets);
+  } catch (error) {
+
+  }
 };
