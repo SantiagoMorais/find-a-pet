@@ -52,6 +52,7 @@ describe("Get many by city Use Case", () => {
     const { pets } = await sut.execute({
       state: "MG",
       city: "TypeScript City",
+      page: 1,
     });
 
     expect(pets[0]?.id).toBe("pet-1");
@@ -59,7 +60,7 @@ describe("Get many by city Use Case", () => {
   });
 
   it("should not be able to search registered pets from another city", async () => {
-    const { pets } = await sut.execute({ state: "MG", city: "Solid" });
+    const { pets } = await sut.execute({ state: "MG", city: "Solid", page: 1 });
 
     expect(pets).toHaveLength(0);
   });
@@ -68,12 +69,14 @@ describe("Get many by city Use Case", () => {
     const firstFilter = await sut.execute({
       state: "MG",
       city: "Typescript City",
+      page: 1,
       filter: { specie: "DOG" },
     });
 
     const secondFilter = await sut.execute({
       state: "MG",
       city: "Typescript City",
+      page: 1,
       filter: { independencyLevel: 3, specie: "DOG" },
     });
 
@@ -87,5 +90,42 @@ describe("Get many by city Use Case", () => {
     );
 
     expect(secondFilter).toEqual({ pets: [] });
+  });
+
+  it("should be able to paginate pets", async () => {
+    for (let i = 1; i <= 21; i++) {
+      await petsRepository.create({
+        id: `pet-${i}`,
+        name: "Buddy",
+        description: "A friendly and energetic dog.",
+        specie: "DOG",
+        age: "ADULT",
+        size: "MEDIUM",
+        energy_level: 3,
+        independency_level: 2,
+        space_requirement: 2,
+        photos: [
+          "https://example.com/photo1.jpg",
+          "https://example.com/photo2.jpg",
+        ],
+        adoption_requirements: ["Needs a large yard", "Good with other dogs"],
+        organization_id: `organization-1`,
+      });
+    }
+
+    const firstPage = await sut.execute({
+      state: "MG",
+      city: "TypeScript City",
+      page: 1,
+    });
+
+    const secondPage = await sut.execute({
+      state: "MG",
+      city: "TypeScript City",
+      page: 2,
+    });
+
+    expect(firstPage.pets).toHaveLength(20);
+    expect(secondPage.pets).toHaveLength(3);
   });
 });
