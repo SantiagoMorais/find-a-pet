@@ -27,7 +27,7 @@ describe("Organization Profile E2E", () => {
         owner: "John Doe",
         email: "johndoe@test.com",
         zip_code: "31365450",
-        address: "any",
+        address: "Node street, 123, Garden Neighborhood, Typescript City - MG",
         whatsapp: "5511999999999",
       },
     });
