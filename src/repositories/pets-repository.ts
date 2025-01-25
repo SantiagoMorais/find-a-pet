@@ -6,6 +6,7 @@ export interface PetsRepository {
   filterById(id: string): Promise<Pet | null>;
   findManyByOrganizationIds(
     organizationId: string[],
-    filter?: TPetsFilterRequest
+    page: number,
+    filter: TPetsFilterRequest | {}
   ): Promise<{ pets: Pet[] }>;
 }

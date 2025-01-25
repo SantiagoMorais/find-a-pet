@@ -41,22 +41,25 @@ export class InMemoryPetsRepository implements PetsRepository {
 
   async findManyByOrganizationIds(
     organizationId: string[],
+    page: number,
     filter?: TPetsFilterRequest
   ) {
-    const pets = this.pets.filter((pet) => {
-      const belongsToOrganization = organizationId.includes(
-        pet.organization_id
-      );
+    const pets = this.pets
+      .filter((pet) => {
+        const belongsToOrganization = organizationId.includes(
+          pet.organization_id
+        );
 
-      const matchesFilters = Object.entries(filter || {}).every(
-        ([key, value]) => {
-          const getPetValue = filterPetsMappings[key];
-          return getPetValue ? getPetValue(pet) === value : true;
-        }
-      );
+        const matchesFilters = Object.entries(filter || {}).every(
+          ([key, value]) => {
+            const getPetValue = filterPetsMappings[key];
+            return getPetValue ? getPetValue(pet) === value : true;
+          }
+        );
 
-      return belongsToOrganization && matchesFilters;
-    });
+        return belongsToOrganization && matchesFilters;
+      })
+      .slice((page - 1) * 20, page * 20);
 
     return { pets };
   }

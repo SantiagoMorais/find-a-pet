@@ -24,6 +24,7 @@ export class PrismaPetsRepository implements PetsRepository {
 
   async findManyByOrganizationIds(
     organizationId: string[],
+    page: number,
     filter?: TPetsFilterRequest
   ) {
     const dynamicFilters = Object.entries(filter || {}).reduce(
@@ -48,6 +49,8 @@ export class PrismaPetsRepository implements PetsRepository {
           dynamicFilters,
         ],
       },
+      take: 20,
+      skip: (page - 1) * 20,
     });
 
     return { pets };
