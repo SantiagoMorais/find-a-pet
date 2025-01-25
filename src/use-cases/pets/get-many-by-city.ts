@@ -15,6 +15,7 @@ export class GetManyByCity {
     state,
     city,
     filter,
+    page,
   }: TGetManyByCityRequest): Promise<TGetManyByCityResponse> {
     const organizations = await this.organizationsRepository.findManyByLocation(
       state,
@@ -27,7 +28,8 @@ export class GetManyByCity {
 
     const pets = await this.petsRepository.findManyByOrganizationIds(
       organizationIds,
-      filter
+      page,
+      filter ? filter : {},
     );
 
     return pets;
