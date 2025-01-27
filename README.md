@@ -1,6 +1,6 @@
 # Find a Friend - API with SOLID concepts
 
-![banner]()
+![banner](./src/assets/imgs/banner.png)
 
 ## Summary
 
@@ -8,7 +8,6 @@
 - [Dev Dependencies](#dev-dependencies)
 - [Objectives](#objectives)
 - [Routes](#routes)
-- [Project](#project)
 - [How to execute the project](#how-to-execute-the-project)
 - [Author](#author)
 
@@ -35,6 +34,8 @@
 - [supertest](https://www.npmjs.com/package/supertest): It provides a high-level abstraction for testing HTTP while also allowing you to access the lower-level API provided by the superagent. In other words, testing the server without having to run it on a specific port, avoiding conflicts.
 
 ## Objectives
+
+This project aims to facilitate pet adoption by allowing organizations (ORGs) to register available animals and users to search for pets in their cities. ORGs can manage their profiles and list pets with specific characteristics, while users can view animal details and contact the ORGs directly via WhatsApp to start the adoption process.
 
 - Application Rules:
 
@@ -198,9 +199,91 @@ interface IPets {
 
 ---
 
-## Project
-
 ## How to execute the project
+
+1. **Clone the repository**: Run the following command to clone the project into your machine:
+
+```bash
+git clone https://github.com/SantiagoMorais/find-a-pet
+```
+
+2. **Install dependencies**: Navigate to the root project folder and install the necessary dependencies:
+
+```bash
+npm install
+```
+
+3. **Initialize the Docker container**: Run Docker Compose to start the container in detached mode:
+
+```bash
+docker compose up -d
+```
+
+4. **Start the container (if necessary)**:
+   - When you first create the container using Docker Compose, it starts automatically.
+   - To start the container manually in the future:
+
+I. List all created containers:
+
+```bash
+docker ps -a
+```
+
+II. Find the container named **find-a-friend-api-find-a-friend-pg-1**
+
+III. Copy the container ID and run the following command (replacing `<container_id>`):
+
+```bash
+docker start <container_id>
+```
+
+IV. Verify that the container is running:
+
+```bash
+docker ps
+```
+
+5. **Configure environment variables**: Create a `.env` file in the project root based on the `.env.example` file provided.
+
+6. **Run database migrations**: Execute the following command to apply Prisma migrations:
+
+```bash
+npx prisma migrate dev
+```
+
+7. **Start the development server**: Launch the server in development mode:
+
+```bash
+npm run server:dev
+```
+
+8. **Run tests**: Verify that everything is working correctly by running the tests:
+
+Unit tests:
+
+```bash
+npm run test:unit
+```
+
+Or run in watch mode:
+
+```bash
+npm run test:unit:watch
+```
+
+End-to-End (E2E) tests:
+
+```bash
+npm run test:e2e:watch
+```
+
+Or run in watch mode:
+
+```bash
+npm run test:e2e:watch
+```
+
+If everything is working well, it's ready to be used! 🚀
 
 ## Author
 
