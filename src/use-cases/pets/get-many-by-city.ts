@@ -29,7 +29,7 @@ export class GetManyByCity {
     const pets = await this.petsRepository.findManyByOrganizationIds(
       organizationIds,
       page,
-      filter ? filter : {},
+      filter ? filter : {}
     );
 
     return pets;
