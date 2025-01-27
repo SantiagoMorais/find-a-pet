@@ -9,4 +9,5 @@ export interface PetsRepository {
     page: number,
     filter: TPetsFilterRequest | {}
   ): Promise<{ pets: Pet[] }>;
+  delete(id: string): Promise<void>;
 }
