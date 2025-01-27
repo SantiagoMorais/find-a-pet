@@ -29,7 +29,7 @@ describe("Authenticate Organization E2E", () => {
     });
 
     const cookies = loginResponse.get("Set-Cookie");
-    
+
     if (!cookies) return;
 
     const response = await request(app.server)
