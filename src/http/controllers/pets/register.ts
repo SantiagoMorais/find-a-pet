@@ -19,11 +19,20 @@ export const registerPet = async (
     spaceRequirement,
     photos,
     adoptionRequirements,
-    organizationId,
-    id
+    id,
   } = req.body;
 
   try {
+    const token = req.headers.authorization?.split(" ")[1];
+
+    if (!token)
+      return res
+        .status(401)
+        .send({ message: "Unauthorized! Token not received." });
+
+    const decoded = await req.jwtDecode<{ sub: string }>();
+    const organizationIdFromToken = decoded.sub;
+
     const registerPetUseCase = makeRegisterPetUseCase();
     const { pet } = await registerPetUseCase.execute({
       id,
@@ -37,8 +46,10 @@ export const registerPet = async (
       spaceRequirement,
       photos,
       adoptionRequirements,
-      organizationId,
+      organizationId: organizationIdFromToken,
     });
+
+    if (!pet) return res.status(400).send({ message: "Pet not registered." });
 
     return res.status(201).send({ pet });
   } catch (error) {

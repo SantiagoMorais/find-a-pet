@@ -5,12 +5,12 @@ import { petDetails } from "./details.ts";
 import { searchPets } from "./search.ts";
 
 export const petsRoutes = (app: FastifyInstance) => {
-  app.get("/pets/search", searchPets);
-
   app.register((app) => {
     app.addHook("onRequest", verifyJWT);
 
     app.post("/pet", registerPet);
     app.get("/pet/:petId", petDetails);
   });
+
+  app.get("/pets/search", searchPets);
 };
