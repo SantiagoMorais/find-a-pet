@@ -51,7 +51,7 @@
   - [x] A pet must be linked to an ORG
   - [x] The user that want to adopt will contact the ORG by WhatsApp
   - [x] All the filters, except the city, are optionals
-  - [] For an ORG to access the application as an Admin, it must be logged.
+  - [x] For an ORG to access the application as an Admin, it must be logged.
 
 ## Routes
 
