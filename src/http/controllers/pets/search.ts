@@ -8,31 +8,29 @@ export const searchPets = async (
       city: string;
       state: string;
       page: number;
-      filter: TSearchPetsFilterQuery;
+      filter?: string;
     };
   }>,
   res: FastifyReply
 ) => {
   const { city, state, page, filter } = req.query;
 
-  try {
-    const useCase = makeSearchPetsUseCase();
-    const pets = await useCase.execute({
-      city,
-      state,
-      page,
-      filter: {
-        age: filter.age,
-        energyLevel: filter.energyLevel,
-        independencyLevel: filter.independencyLevel,
-        size: filter.size,
-        spaceRequirement: filter.spaceRequirement,
-        specie: filter.specie,
-      },
-    });
-
-    return res.status(200).send(pets);
-  } catch (error) {
-
+  let filters: Partial<TSearchPetsFilterQuery> = {};
+  if (filter) {
+    try {
+      filters = JSON.parse(filter);
+    } catch (error) {
+      console.error("Error parsing filter:", error);
+    }
   }
+
+  const useCase = makeSearchPetsUseCase();
+  const pets = await useCase.execute({
+    city,
+    state,
+    page,
+    filter: filters,
+  });
+
+  return res.status(200).send(pets);
 };
