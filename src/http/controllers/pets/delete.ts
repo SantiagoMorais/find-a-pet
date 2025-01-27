@@ -3,14 +3,14 @@ import { makeDeletePetUseCase } from "@/use-cases/factories/pet/make-delete-pet-
 import { FastifyReply, FastifyRequest } from "fastify";
 
 export const deletePet = async (
-  req: FastifyRequest<{ Params: { id: string } }>,
+  req: FastifyRequest<{ Params: { petId: string } }>,
   res: FastifyReply
 ) => {
-  const { id } = req.params;
+  const { petId } = req.params;
 
   try {
     const useCase = makeDeletePetUseCase();
-    await useCase.execute(id);
+    await useCase.execute(petId);
 
     return res.status(204).send();
   } catch (error) {
