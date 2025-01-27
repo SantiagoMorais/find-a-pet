@@ -4,18 +4,20 @@ import { FastifyInstance } from "fastify";
 import request from "supertest";
 
 export const createAndAuthenticateOrganization = async (
-  app: FastifyInstance
+  app: FastifyInstance,
+  id?: string,
+  email?: string
 ) => {
   await prisma.organization.create({
     data: {
       name: "Happy Paws Shelter",
       owner: "John Doe",
-      email: "johndoe@test.com",
+      email: email ?? "johndoe@test.com",
       zip_code: "31365450",
       address: "Node street, 123, Garden Neighborhood, Typescript City - MG",
       whatsapp: 5511999999999,
       password_hash: await hash("123456", 6),
-      id: "organization-id",
+      id: id ?? "organization-id",
     },
   });
 
