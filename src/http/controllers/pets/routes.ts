@@ -9,8 +9,8 @@ export const petsRoutes = (app: FastifyInstance) => {
     app.addHook("onRequest", verifyJWT);
 
     app.post("/pet", registerPet);
-    app.get("/pet/:petId", petDetails);
   });
-
+  
+  app.get("/pet/:petId", petDetails);
   app.get("/pets/search", searchPets);
 };
