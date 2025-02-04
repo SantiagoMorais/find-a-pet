@@ -18,6 +18,7 @@ export class InMemoryOrganizationsRepository
       address: data.address,
       password_hash: data.password_hash,
       created_at: new Date(),
+      token: null,
     };
 
     this.organizations.push(organization);
