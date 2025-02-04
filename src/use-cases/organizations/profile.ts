@@ -10,7 +10,7 @@ export class OrganizationProfileUseCase {
 
     if (!organization) throw new ResourceNotFoundError();
 
-    const { id, created_at, password_hash, ...rest } = organization;
+    const { id, created_at, password_hash, token, ...rest } = organization;
     return { organization: rest };
   }
 }
