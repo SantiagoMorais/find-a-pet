@@ -4,6 +4,7 @@ import { authenticate } from "./authenticate.ts";
 import { refreshToken } from "./refresh.ts";
 import { verifyJWT } from "@/http/middlewares/verify-jwt.ts";
 import { organizationProfile } from "./profile.ts";
+import { logOut } from "./log-out.ts";
 
 export const organizationsRoutes: FastifyPluginAsyncZod = async (app) => {
   app.post("/organizations", register);
@@ -17,4 +18,6 @@ export const organizationsRoutes: FastifyPluginAsyncZod = async (app) => {
     { onRequest: [verifyJWT] },
     organizationProfile
   );
+
+  app.get("/logout", { onRequest: [verifyJWT] }, logOut);
 };
