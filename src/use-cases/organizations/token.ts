@@ -8,9 +8,7 @@ export class OrganizationToken {
     const organization = await this.organizationsRepository.findById(id);
     if (!organization) throw new ResourceNotFoundError();
 
-    const { token } = organization;
-    if (!token) throw new ResourceNotFoundError();
-    
+    const { token } = organization;    
     return { token };
   }
 }
