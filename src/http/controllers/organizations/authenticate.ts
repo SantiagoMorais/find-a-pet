@@ -30,12 +30,10 @@ export const authenticate = async (
         sameSite: true,
         httpOnly: true,
       })
-      .status(200)
+      .status(201)
       .send({ token });
   } catch (error) {
     if (error instanceof InvalidCredentialsError)
       return res.status(400).send({ message: error.message });
   }
-
-  return res.status(200).send();
 };

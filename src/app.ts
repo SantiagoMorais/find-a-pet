@@ -33,7 +33,7 @@ app.register(fastifyCookie);
 
 // Cors
 app.register(fastifyCors, {
-  origin: "*",
+  origin: "http://localhost:5173",
   credentials: true,
 });
 
